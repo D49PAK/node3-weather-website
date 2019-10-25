@@ -5,6 +5,7 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express()
+const port = process.env.PORT || 3000
 
 //Define path for express configue
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -93,6 +94,13 @@ app.get('*', (req, res) => {
         errorMessage: 'Page not found !'
     })
 })
-app.listen(3000, () => {
-    console.log('server is up on posrt 3000.')
-})
+
+//setting static port to run application locally
+// app.listen(3000, () => {
+//     console.log('server is up on posrt 3000.')
+// })
+
+//setting port by HEROKU to run application
+app.listen(port, () => {
+       console.log('server is up on port' +port )
+    })
